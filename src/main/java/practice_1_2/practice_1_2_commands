@@ -1,0 +1,2 @@
+javac -d ./classes ./src/main/java/practice_1_2/HelloWorld.java
+java -cp classes practice_1_2.HelloWorld Alex
