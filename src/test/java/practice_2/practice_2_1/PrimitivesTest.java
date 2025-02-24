@@ -1,8 +1,8 @@
 package practice_2.practice_2_1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PrimitivesTest {
 
@@ -50,16 +50,16 @@ public class PrimitivesTest {
     }
 
     @Test
-    public void declareCharsUsingDifferentApproaches(){
+    public void declareCharsUsingDifferentApproaches() {
         char a = 'a', a1 = '\141', a2 = '\u0061';
 
         assertTrue(a == a1 && a1 == a2);
     }
 
     @Test
-    public void charAndIntCasting(){
-        char a1 = '\141',  a2 = '\u0061';
-        int i = a1, i2 = 0141, i3= 0x61;
+    public void charAndIntCasting() {
+        char a1 = '\141', a2 = '\u0061';
+        int i = a1, i2 = 0141, i3 = 0x61;
 
         assertTrue(i == a1);
         assertTrue(i2 == a1);
@@ -70,21 +70,21 @@ public class PrimitivesTest {
     }
 
     @Test
-    public void arithmeticOperationsWithChars(){
+    public void arithmeticOperationsWithChars() {
         char someChar = 'k';
 
-        boolean isEven = someChar%2 == 0;
+        boolean isEven = someChar % 2 == 0;
         assertFalse(isEven);
     }
 
     @Test
-    public void calculateNextAndPreviousCharFromGiven(){
+    public void calculateNextAndPreviousCharFromGiven() {
         char someChar = 'k';
 
         // if we are using first variant of calculation of the next char
         // => we will need to make an explicit type casting, because any arithmetic operation
         // will cast any values smaller than int to int
-        char nextChar = (char) (someChar +1);
+        char nextChar = (char) (someChar + 1);
 
         // however, if we are talking about the operators like ++ or --
         // in this case type casting is unnecessary, because those operators
@@ -101,7 +101,7 @@ public class PrimitivesTest {
     }
 
     @Test
-    public void symbolsIntValueConversion(){
+    public void symbolsIntValueConversion() {
         char upperA = 'A';
         char lowerA = 'a';
 
