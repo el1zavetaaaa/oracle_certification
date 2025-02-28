@@ -57,13 +57,56 @@ public class StringsTest {
     @Test
     public void textBlocks() {
         String p1 = """
-                   product 101
-                 "Hot Tea"
-                     price 1.99
-                """;
+            product 101
+          "Hot Tea"
+              price 1.99
+        """;
 
-        assertEquals("   product 101\n \"Hot Tea\"\n     price 1.99\n", p1);
+        // all the leading spaces there preserved, because the line with the least amount
+        // of leading spaces is the last line, which contains only new line separation
+        assertEquals("    product 101\n  \"Hot Tea\"\n      price 1.99\n", p1);
+
+        //here, however, the line with the least amount of leading spaces
+        // is the second line "Hot Tea", which have 2 leading spaces
+        // that's why all other lines will be shifted to the left by 2 spaces
+        // 1st line will have 2 leading spaces ad the last line - 4
+        String p2 = """
+            product 101
+          "Hot Tea"
+              price 1.99""";
+        assertEquals("  product 101\n\"Hot Tea\"\n    price 1.99", p2);
     }
 
-    //finish on letter f p.40
+    @Test
+    public void stringBuilderUsage(){
+        StringBuilder txt = new StringBuilder("TEA TEA");
+        assertEquals(7, txt.length());
+        // for default stringbuilder constructor the capacity will be 16
+        // for string argument constructor the capacity will be
+        // string.length() + 16
+        assertEquals(23, txt.capacity());
+
+        //replace first TEA word with the phrase 'What is the price of?'
+        txt.replace(0, 3, "What is the price of");
+        assertEquals("What is the price of TEA", txt.toString());
+        assertEquals(24, txt.length());
+
+        // when appending data causes the current capacity to be exceeded,
+        // the StringBuilder automatically increases its capacity.
+        // The new capacity is calculated using the formula:
+        //newCapacity = (oldCapacity * 2) + 2 => (23*2)+2
+        assertEquals(48,txt.capacity());
+    }
+
+    @Test
+    public void formatAndFormatted(){
+        String p2 = "product: %d, %s, price: %2.2f";
+        String result = "product: 101, Tea, price: 1,26";
+
+        assertEquals(result, p2.formatted(101, "Tea", 1.255));
+        assertEquals(result, String.format(p2, 101, "Tea", 1.255));
+        // the same result will be with System.out.printf
+        System.out.printf(p2, 101, "Tea", 1.255);
+    }
+
 }
