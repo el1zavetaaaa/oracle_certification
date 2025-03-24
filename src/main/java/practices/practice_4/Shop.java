@@ -20,6 +20,8 @@ package practices.practice_4;
 import java.math.BigDecimal;
 
 /**
+ * {@code Shop} class represents an application that manages Products
+ * @version 4.0
  * @author yelyzavetalubenets
  **/
 public class Shop {
