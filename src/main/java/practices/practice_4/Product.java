@@ -18,11 +18,13 @@
 package practices.practice_4;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * @author yelyzavetalubenets
  **/
 public class Product {
+    public static final BigDecimal DISCOUNT_RATE = BigDecimal.valueOf(0.1);
     private int id;
     private String name;
     private BigDecimal price;
@@ -31,7 +33,7 @@ public class Product {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(final int id) {
         this.id = id;
     }
 
@@ -39,7 +41,7 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -47,7 +49,13 @@ public class Product {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    //prevent the reassignment of the method arguments in the Product class
+    //by marking them all with the final keyword ( final BigDecimal price )
+    public void setPrice(final BigDecimal price) {
         this.price = price;
+    }
+
+    public BigDecimal getDiscount(){
+        return price.multiply(DISCOUNT_RATE).setScale(2, RoundingMode.HALF_UP);
     }
 }
